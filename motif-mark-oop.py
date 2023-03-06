@@ -205,6 +205,8 @@ for key, seq in genes.items():
     ystart += 100
  
 
+#output to png with same title as input fasta file but changing suffix to png
+surface.write_to_png(f[:-5] + "png")
 
 #write out drawing
 surface.finish()
