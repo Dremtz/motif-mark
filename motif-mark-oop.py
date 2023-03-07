@@ -143,10 +143,10 @@ seq_label_y = 180
 colors = [(1,0,0), (0,0.5,0), (0,0,1), (1,0,1), (1,1,0)]
 
 #create list of different x-axis values for rectangle
-#DRE not using this right now
 recstart = 50
 counter = 0
 name_counter = 0
+motif_width = 20
 
 #loop through genes dictionary and output a line at each one
 
@@ -178,11 +178,12 @@ for key, seq in genes.items():
 
 
         for line in plot_list:
-            context.set_line_width(20)
+            context.set_line_width(motif_width)
             context.set_source_rgb(colors[i][0], colors[i][1], colors[i][2])
             context.move_to(xstart + line[0], ystart)
             context.line_to(xstart + line[1], ystart)
             context.stroke()
+        motif_width -= 2
 
         #now draw our rectangles for legend, use a counter to stop writing legend squares once we've worked through every motif
         if counter < len(motif_names_list):
@@ -203,7 +204,7 @@ for key, seq in genes.items():
         recstart += 150
 
     ystart += 100
- 
+    motif_width = 20
 
 #output to png with same title as input fasta file but changing suffix to png
 surface.write_to_png(f[:-5] + "png")
